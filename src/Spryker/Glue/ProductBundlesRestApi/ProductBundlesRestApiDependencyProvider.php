@@ -33,11 +33,6 @@ class ProductBundlesRestApiDependencyProvider extends AbstractBundleDependencyPr
      */
     public const RESOURCE_ORDERS_REST_API = 'RESOURCE_ORDERS_REST_API';
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
@@ -48,11 +43,6 @@ class ProductBundlesRestApiDependencyProvider extends AbstractBundleDependencyPr
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addProductStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRODUCT_STORAGE, function (Container $container) {
@@ -64,11 +54,6 @@ class ProductBundlesRestApiDependencyProvider extends AbstractBundleDependencyPr
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addProductBundleStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRODUCT_BUNDLE_STORAGE, function (Container $container) {
@@ -80,11 +65,6 @@ class ProductBundlesRestApiDependencyProvider extends AbstractBundleDependencyPr
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Container
-     */
     protected function addOrdersRestApiResource(Container $container): Container
     {
         $container->set(static::RESOURCE_ORDERS_REST_API, function (Container $container) {

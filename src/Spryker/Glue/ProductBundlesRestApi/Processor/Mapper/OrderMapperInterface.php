@@ -12,12 +12,6 @@ use Generated\Shared\Transfer\RestOrderDetailsAttributesTransfer;
 
 interface OrderMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\RestOrderDetailsAttributesTransfer $restOrderDetailsAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestOrderDetailsAttributesTransfer
-     */
     public function mapOrderTransferToRestOrderDetailsAttributesTransfer(
         OrderTransfer $orderTransfer,
         RestOrderDetailsAttributesTransfer $restOrderDetailsAttributesTransfer

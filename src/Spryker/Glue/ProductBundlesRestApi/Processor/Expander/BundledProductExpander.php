@@ -18,9 +18,6 @@ class BundledProductExpander implements BundledProductExpanderInterface
      */
     protected $bundledProductReader;
 
-    /**
-     * @param \Spryker\Glue\ProductBundlesRestApi\Processor\Reader\BundledProductReaderInterface $bundledProductReader
-     */
     public function __construct(BundledProductReaderInterface $bundledProductReader)
     {
         $this->bundledProductReader = $bundledProductReader;

@@ -20,20 +20,11 @@ class OrderMapper implements OrderMapperInterface
      */
     protected $ordersRestApiResource;
 
-    /**
-     * @param \Spryker\Glue\ProductBundlesRestApi\Dependency\RestResource\ProductBundlesRestApiToOrdersRestApiResourceInterface $ordersRestApiResource
-     */
     public function __construct(ProductBundlesRestApiToOrdersRestApiResourceInterface $ordersRestApiResource)
     {
         $this->ordersRestApiResource = $ordersRestApiResource;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\RestOrderDetailsAttributesTransfer $restOrderDetailsAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestOrderDetailsAttributesTransfer
-     */
     public function mapOrderTransferToRestOrderDetailsAttributesTransfer(
         OrderTransfer $orderTransfer,
         RestOrderDetailsAttributesTransfer $restOrderDetailsAttributesTransfer

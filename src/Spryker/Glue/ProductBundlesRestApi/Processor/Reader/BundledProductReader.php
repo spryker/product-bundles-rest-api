@@ -37,11 +37,6 @@ class BundledProductReader implements BundledProductReaderInterface
      */
     protected $bundledProductRestResponseBuilder;
 
-    /**
-     * @param \Spryker\Glue\ProductBundlesRestApi\Dependency\Client\ProductBundlesRestApiToProductStorageClientInterface $productStorageClient
-     * @param \Spryker\Glue\ProductBundlesRestApi\Dependency\Client\ProductBundlesRestApiToProductBundleStorageClientInterface $productBundleStorageClient
-     * @param \Spryker\Glue\ProductBundlesRestApi\Processor\RestResponseBuilder\BundledProductRestResponseBuilderInterface $bundledProductRestResponseBuilder
-     */
     public function __construct(
         ProductBundlesRestApiToProductStorageClientInterface $productStorageClient,
         ProductBundlesRestApiToProductBundleStorageClientInterface $productBundleStorageClient,
@@ -52,11 +47,6 @@ class BundledProductReader implements BundledProductReaderInterface
         $this->bundledProductRestResponseBuilder = $bundledProductRestResponseBuilder;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function getBundledProducts(RestRequestInterface $restRequest): RestResponseInterface
     {
         $productConcreteResource = $restRequest->findParentResourceByType(

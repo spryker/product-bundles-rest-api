@@ -25,17 +25,11 @@ use Spryker\Glue\ProductBundlesRestApi\Processor\RestResponseBuilder\BundledProd
  */
 class ProductBundlesRestApiFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Processor\Expander\BundledProductExpanderInterface
-     */
     public function createBundledProductExpander(): BundledProductExpanderInterface
     {
         return new BundledProductExpander($this->createBundledProductReader());
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Processor\Reader\BundledProductReaderInterface
-     */
     public function createBundledProductReader(): BundledProductReaderInterface
     {
         return new BundledProductReader(
@@ -45,41 +39,26 @@ class ProductBundlesRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Processor\Mapper\OrderMapperInterface
-     */
     public function createOrderMapper(): OrderMapperInterface
     {
         return new OrderMapper($this->getOrdersRestApiResource());
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Processor\RestResponseBuilder\BundledProductRestResponseBuilderInterface
-     */
     public function createBundledProductRestResponseBuilder(): BundledProductRestResponseBuilderInterface
     {
         return new BundledProductRestResponseBuilder($this->getResourceBuilder());
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Dependency\Client\ProductBundlesRestApiToProductStorageClientInterface
-     */
     public function getProductStorageClient(): ProductBundlesRestApiToProductStorageClientInterface
     {
         return $this->getProvidedDependency(ProductBundlesRestApiDependencyProvider::CLIENT_PRODUCT_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Dependency\Client\ProductBundlesRestApiToProductBundleStorageClientInterface
-     */
     public function getProductBundleStorageClient(): ProductBundlesRestApiToProductBundleStorageClientInterface
     {
         return $this->getProvidedDependency(ProductBundlesRestApiDependencyProvider::CLIENT_PRODUCT_BUNDLE_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Glue\ProductBundlesRestApi\Dependency\RestResource\ProductBundlesRestApiToOrdersRestApiResourceInterface
-     */
     public function getOrdersRestApiResource(): ProductBundlesRestApiToOrdersRestApiResourceInterface
     {
         return $this->getProvidedDependency(ProductBundlesRestApiDependencyProvider::RESOURCE_ORDERS_REST_API);
