@@ -18,6 +18,11 @@
 
     <transfer name="ProductForProductBundleStorage">
         <property name="sku" type="string" description="The Stock Keeping Unit, a unique identifier for a concrete product."/>
+        <property name="quantity" type="int" description="The number of units for an item."/>
+    </transfer>
+
+    <transfer name="Locale">
+        <property name="localeName" type="string"/>
     </transfer>
 
     <transfer name="Order">
