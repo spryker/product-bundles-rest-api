@@ -1,6 +1,13 @@
 parameters:
     level: 7
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         # Glue framework annotation parsing
         -
             identifier: phpDoc.parseError
+#        API Platform Generated resource classes are intentionally excluded from generation
+#        (see config/GlueStorefront/packages/spryker_api_platform.php).
+        - '#invalid type Generated\\Api\\Storefront\\BundledProductsStorefrontResource\.#'
+        - '#invalid return type Generated\\Api\\Storefront\\BundledProductsStorefrontResource\.#'
+        - '#unknown class Generated\\Api\\Storefront\\BundledProductsStorefrontResource\.#'
+        - '#Instantiated class Generated\\Api\\Storefront\\BundledProductsStorefrontResource not found\.#'
