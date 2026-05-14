@@ -1,0 +1,12 @@
+resource:
+    name: Orders
+    shortName: orders
+
+    properties:
+        bundleItems:
+            type: array
+            readable: true
+            writable: false
+            openapiContext:
+                description: "Bundle items expanded for this order's line items."
+                example: []
