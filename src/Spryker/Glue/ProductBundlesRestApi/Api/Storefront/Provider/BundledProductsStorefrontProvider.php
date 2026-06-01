@@ -12,12 +12,11 @@ namespace Spryker\Glue\ProductBundlesRestApi\Api\Storefront\Provider;
 use Generated\Api\Storefront\BundledProductsStorefrontResource;
 use Generated\Shared\Transfer\ProductBundleStorageCriteriaTransfer;
 use Generated\Shared\Transfer\ProductForProductBundleStorageTransfer;
-use Spryker\ApiPlatform\Exception\GlueApiException;
 use Spryker\ApiPlatform\State\Provider\AbstractStorefrontProvider;
 use Spryker\Client\ProductBundleStorage\ProductBundleStorageClientInterface;
 use Spryker\Client\ProductStorage\ProductStorageClientInterface;
-use Spryker\Glue\ProductBundlesRestApi\ProductBundlesRestApiConfig;
-use Symfony\Component\HttpFoundation\Response;
+use Spryker\Glue\ProductBundlesRestApi\Api\Storefront\Exception\ProductBundlesExceptionFactory;
+use Spryker\Service\Serializer\SerializerServiceInterface;
 
 class BundledProductsStorefrontProvider extends AbstractStorefrontProvider
 {
@@ -28,6 +27,8 @@ class BundledProductsStorefrontProvider extends AbstractStorefrontProvider
     public function __construct(
         protected ProductStorageClientInterface $productStorageClient,
         protected ProductBundleStorageClientInterface $productBundleStorageClient,
+        protected ProductBundlesExceptionFactory $exceptionFactory,
+        protected SerializerServiceInterface $serializer,
     ) {
     }
 
@@ -59,7 +60,7 @@ class BundledProductsStorefrontProvider extends AbstractStorefrontProvider
         $resources = [];
         foreach ($productBundleStorageTransfers as $productBundleStorageTransfer) {
             foreach ($productBundleStorageTransfer->getBundledProducts() as $bundled) {
-                $resources[] = $this->mapBundledToResource($bundled);
+                $resources[] = $this->denormalizeToResource($bundled);
             }
         }
 
@@ -69,33 +70,23 @@ class BundledProductsStorefrontProvider extends AbstractStorefrontProvider
     protected function resolveConcreteProductSku(): string
     {
         if (!$this->hasUriVariable(static::URI_VAR_CONCRETE_SKU)) {
-            $this->throwMissingConcreteProductSku();
+            throw $this->exceptionFactory->createMissingConcreteProductSkuException();
         }
 
         $sku = (string)$this->getUriVariable(static::URI_VAR_CONCRETE_SKU);
 
         if ($sku === '') {
-            $this->throwMissingConcreteProductSku();
+            throw $this->exceptionFactory->createMissingConcreteProductSkuException();
         }
 
         return $sku;
     }
 
-    protected function throwMissingConcreteProductSku(): never
+    protected function denormalizeToResource(ProductForProductBundleStorageTransfer $bundled): BundledProductsStorefrontResource
     {
-        throw new GlueApiException(
-            Response::HTTP_BAD_REQUEST,
-            ProductBundlesRestApiConfig::RESPONSE_CODE_CONCRETE_PRODUCT_SKU_IS_NOT_SPECIFIED,
-            ProductBundlesRestApiConfig::RESPONSE_DETAIL_CONCRETE_PRODUCT_SKU_IS_NOT_SPECIFIED,
+        return $this->serializer->denormalize(
+            ['sku' => $bundled->getSku(), 'quantity' => $bundled->getQuantity()],
+            BundledProductsStorefrontResource::class,
         );
-    }
-
-    protected function mapBundledToResource(ProductForProductBundleStorageTransfer $bundled): BundledProductsStorefrontResource
-    {
-        $resource = new BundledProductsStorefrontResource();
-        $resource->sku = $bundled->getSku();
-        $resource->quantity = $bundled->getQuantity();
-
-        return $resource;
     }
 }

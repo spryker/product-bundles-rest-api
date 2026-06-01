@@ -9,16 +9,27 @@ resource:
 
     operations:
         - type: GetCollection
+          name: getBundledProducts
           uriTemplate: /concrete-products/{concreteProductSku}/bundled-products
-          description: 'Retrieve bundled products for a concrete product'
+          description: 'Retrieve bundled products for a concrete product.'
           uriVariables:
               concreteProductSku:
                   fromClass: ConcreteProductsStorefrontResource
+          openapiContext:
+              responses:
+                  200:
+                      description: 'Bundled products returned.'
+                  400:
+                      description: 'Concrete product SKU not specified (code 312).'
 
         - type: GetCollection
-          name: getBundledProductsFallbackMissingSku
+          name: getBundledProductsWithoutSku
           uriTemplate: '/concrete-products/bundled-products'
-          description: 'Backward compatibility — returns 400 when concrete product SKU is missing'
+          description: 'Returns 400 when concrete product SKU is missing.'
+          openapiContext:
+              responses:
+                  400:
+                      description: 'Concrete product SKU not specified (code 312).'
 
     includes:
         - relationshipName: concrete-products
