@@ -12,11 +12,15 @@ use Spryker\Glue\Kernel\AbstractBundleConfig;
 class ProductBundlesRestApiConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var string
      */
     public const RESOURCE_BUNDLED_PRODUCTS = 'bundled-products';
 
     /**
+     * @api
+     *
      * @uses \Spryker\Glue\ProductsRestApi\ProductsRestApiConfig::RESOURCE_CONCRETE_PRODUCTS
      *
      * @var string
@@ -24,6 +28,8 @@ class ProductBundlesRestApiConfig extends AbstractBundleConfig
     public const RESOURCE_CONCRETE_PRODUCTS = 'concrete-products';
 
     /**
+     * @api
+     *
      * @uses \Spryker\Glue\ProductsRestApi\ProductsRestApiConfig::RESPONSE_CODE_CONCRETE_PRODUCT_SKU_IS_NOT_SPECIFIED
      *
      * @var string
@@ -31,6 +37,8 @@ class ProductBundlesRestApiConfig extends AbstractBundleConfig
     public const RESPONSE_CODE_CONCRETE_PRODUCT_SKU_IS_NOT_SPECIFIED = '312';
 
     /**
+     * @api
+     *
      * @uses \Spryker\Glue\ProductsRestApi\ProductsRestApiConfig::RESPONSE_DETAIL_CONCRETE_PRODUCT_SKU_IS_NOT_SPECIFIED
      *
      * @var string
