@@ -19,8 +19,6 @@ resource:
               responses:
                   200:
                       description: 'Bundled products returned.'
-                  400:
-                      description: 'Concrete product SKU not specified (code 312).'
 
         - type: GetCollection
           name: getBundledProductsWithoutSku
