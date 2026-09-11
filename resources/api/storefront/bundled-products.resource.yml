@@ -23,6 +23,7 @@ resource:
         - type: GetCollection
           name: getBundledProductsWithoutSku
           uriTemplate: '/concrete-products/bundled-products'
+          openapi: false
           description: 'Returns 400 when concrete product SKU is missing.'
           openapiContext:
               responses:
